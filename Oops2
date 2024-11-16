@@ -1,0 +1,97 @@
+/*oop2: A book shop maintains the inventory of books that are being sold at the shop. The list includes details such as author, title, price, publisher and stock position. Whenever a customer wants a book, the sales person inputs the title and author and the system searches the list and displays whether it is available or not. If it is not, an appropriate message is displayed. If it is, then the system displays the book details and requests for the number of copies required. If the requested copies book details and requests for the number of copies required. If the requested copies are available, the total cost of the requested copies is displayed; otherwise the message “Required copies not in stock” is displayed.
+design a system using a class called books with suitable member functions and Constructors. Use new operator in constructors to allocate memory space required. Implement C++ program for the system.*/
+
+#include <iostream>
+#include<cstring>
+using namespace std;
+int i,n;
+class Books
+{
+int pz,sp;
+char *aut,*tt,*pub;
+public:
+Books()
+{
+    tt=new char;
+    pub=new char;
+    aut=new char;
+strcpy(tt,"oop");
+strcpy(aut,"ebal");
+strcpy(pub,"tata");
+pz=1000;
+sp=50;
+}
+~Books()
+{
+  cout<<"object destroyed\t";  
+}
+void accept();
+void display();
+void search();
+}b[10];
+void Books::accept()
+{
+    cout<<"\n enter the title,author,publisher,price and stock";
+    cin>>tt>>aut>>pub>>pz>>sp;
+}
+void Books::search()
+{
+ char *t,*a;
+ int total,f=0,f1=0,cp;
+ t=new char;
+ a=new char;
+ cout<<"\n enter the t and";
+ cin>>t>>a;
+ for(i-0;i<n;i++)
+ {
+     if(strcmp(t,b[i].tt)==0 && strcmp(a,b[i].aut)==0)
+     {
+        f=1;
+        cout<<"\n enter the number of copies";
+        cin>>cp;
+        if(cp<=b[i].sp)
+        {
+            f1=1;
+            total=b[i].pz*cp;
+            b[i].sp=b[i].sp-cp;
+            cout<<"\n total cost is:"<<total;
+        }break;
+     }
+ }
+ if(f==0)
+ {
+     cout<<"\n book is not available";
+    
+ }
+ if(f==1 && f1==0)
+ cout<<"\n book is available but number of copies not";
+}
+void Books::display()
+{
+    cout<<"\n"<<tt<<"\t"<<aut<<"\t"<<pub<<"\t"<<pz<<"\t"<<sp;
+}
+int main()
+{
+ int ch;
+ cout<<"\n enter the value of n";
+ cin>>n;
+do{
+    cout<<"1.accept\n 2.display \n 3. search\n enter your chioce:\n";
+    cin>>ch;
+    
+switch(ch){
+    case 1: for(i=0;i<n;i++)
+          {
+              b[i].accept();
+          }break;
+    case 2:cout<<"\n title\taut\tpub\tpz\tsp";
+        for(i=0;i<n;i++)
+         {
+             b[i].display();
+         }break;
+    case 3:
+         b[i].search();
+}   
+}while(ch!=0);
+    return 0;
+}
